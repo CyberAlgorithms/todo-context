@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { TodoContext } from "../store/todo-items-store";
 
 // eslint-disable-next-line react/prop-types
-function Addt({ onNewItem }) {
+function Addt() {
+  const {addNewItem} = useContext(TodoContext);
   const [todoName, setTodoName] = useState("");
   const [todoDate, setTodoDate] = useState("");
   const handleName = (event) => {
@@ -11,8 +13,7 @@ function Addt({ onNewItem }) {
     setTodoDate(event.target.value);
   };
   const handleAdd = () => {
-    console.log("sending to parent0", todoName, todoDate);
-    onNewItem(todoName, todoDate);
+    addNewItem(todoName, todoDate);
     setTodoName("");
     setTodoDate("");
   };
